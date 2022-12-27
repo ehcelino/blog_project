@@ -1,0 +1,15 @@
+<%= form_with model: post do |ps| %>
+  <dl>
+    <dt>
+      <%= ps.label 'Título'%>
+      <%= ps.text_field :title %>
+    </dt>
+    <dt>
+      <%= ps.label 'Texto'%>
+      <%= ps.text_area :body %>
+    </dt>
+    <dt>
+      <%= ps.submit 'Salvar' %>
+    </dt>
+  </dl>
+<% end %>

@@ -1,0 +1,10 @@
+<h1>Blog</h1>
+
+<% @posts.each do |post| %>
+  <%= post.title %>
+  <br />
+  <%= truncate(post.body, length: 20) %>
+  <%= link_to 'Ver post', post %>
+  <br />
+  <br />
+<% end %>

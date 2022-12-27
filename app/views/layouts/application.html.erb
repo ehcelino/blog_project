@@ -11,6 +11,16 @@
   </head>
 
   <body>
+    <nav>
+      <dl>
+        <dt>
+          <%= link_to 'Home', root_path %>
+        </dt>
+        <dt>
+          <%= link_to 'Novo post', new_post_path %>
+        </dt>
+      </dl>
+    </nav>
     <%= yield %>
   </body>
 </html>
