@@ -9,6 +9,10 @@
       <%= ps.text_area :body %>
     </dt>
     <dt>
+      <%= ps.hidden_field :user_id, value: current_user.id %>
+      <%= ps.label current_user.email %>
+    </dt>
+    <dt>
       <%= ps.submit 'Salvar' %>
     </dt>
   </dl>

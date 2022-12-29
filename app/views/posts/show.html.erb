@@ -1,4 +1,13 @@
+  <%= @post.user.username %>
+  <br />
   <%= @post.title %>
   <br />
   <%= @post.body %>
   <br />
+  <br />
+  <% if current_user == @post.user %>
+    <%= form_for(@post, method: :delete) do |f| %>
+      <%= f.submit "Delete", class: "btn btn-danger" %>
+    <% end %>
+    <%= button_to "Editar", edit_post_path(@post) %>
+  <% end %>

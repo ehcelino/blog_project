@@ -1,10 +1,19 @@
+<% if notice %>
+  <div class="notice"><%= notice %></div>
+<% end %>
+
 <h2>Todos os posts</h2>
 
 <% @posts.each do |post| %>
-  <%= post.title %>
-  <br />
-  <%= truncate(post.body, length: 20) %>
-  <%= link_to 'Ver post', post %>
-  <br />
-  <br />
+  <div class="post">
+    <%= link_to post.title, post, class: "post-title" %>
+    <br />
+    <i> Por <%= post.user.username %> </i>
+    <br />
+    <i> Email <%= post.user.email %> </i>
+    <br />
+    <%= truncate(post.body, length: 200) %>
+    <%= link_to 'Ver post', post %>
+    <br />
+  </div>
 <% end %>

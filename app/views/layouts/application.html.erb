@@ -12,13 +12,34 @@
 
   <body>
   <h1>Modelo de blog</h1>
+  <div class="grid-container">
+    <div class="grid-item">
+
+    </div>
+    <div class="grid-item">
+    <div class="log-menu">
+        <% if current_user %>
+          Logado como <%= current_user.email %>
+          <%= link_to "   Log out", session_path("current"), method: "delete" %>
+        <% else %>
+          <%= link_to 'Inscreva-se', new_user_path %> ou 
+          <%= link_to 'Log in', new_session_path %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
     <nav>
       <dl>
+        
         <dt>
           <%= link_to 'Home', root_path %>
         </dt>
         <dt>
           <%= link_to 'Novo post', new_post_path %>
+        </dt>
+        <dt>
+          <%= link_to 'Usuários', users_path %>
         </dt>
       </dl>
     </nav>
