@@ -1,4 +1,4 @@
-<% total_pages = Post.count / @per_page %>
+<% total_pages = (Post.count / @per_page) + (Post.count % @per_page) %>
 <% if notice %>
   <div class="notice"><%= notice %></div>
 <% end %>
