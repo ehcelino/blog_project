@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authorize, only: [:edit, :update, :new]
   before_action :set_post, only: [:destroy]
-
+  # skip_before_action :check_timeout
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments
