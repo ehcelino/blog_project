@@ -1,3 +1,4 @@
+<% total_pages = Post.count / @per_page %>
 <% if notice %>
   <div class="notice"><%= notice %></div>
 <% end %>
@@ -5,15 +6,22 @@
 <h2>Todos os posts</h2>
 
 <% @posts.each do |post| %>
+  <% time = post.created_at.time.in_time_zone("Brasilia") %>
+  <% n_time = time.strftime("%d/%m/%Y %H:%M") %>
   <div class="post">
     <%= link_to post.title, post, class: "post-title" %>
     <br />
-    <i> Por <%= post.user.username %> </i>
+    <i> Por <%= post.user.username %> - <%= n_time %> </i>
     <br />
     <i> Email <%= post.user.email %> </i>
     <br />
-    <%= truncate(post.body, length: 200) %>
+    <br />
+    <%= truncate(post.body, length: 350) %>
     <%= link_to 'Ver post', post %>
     <br />
   </div>
+<% end %>
+
+<% (1..total_pages).each do |page| %>
+  <%= link_to page, root_path(page: page) %>
 <% end %>

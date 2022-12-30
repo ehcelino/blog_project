@@ -1,8 +1,8 @@
 
 
-<h1>Sign Up</h1>
+<h1>Inscrição</h1>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, html: { id: "signup-form" } do |f| %>
   <% if @user.errors.any? %>
     <div class="error_messages">
       <h2>Form is invalid</h2>
@@ -24,12 +24,24 @@
   </div>
   <div class="field">
     <%= f.label 'Senha' %><br />
-    <%= f.password_field :password %>
+    <%= f.password_field :password, id: "password" %>
   </div>
   <div class="field">
     <%= f.label 'Repita a senha' %><br />
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, id: "password_confirmation" %>
   </div>
-  <div class="actions"><%= f.submit "Sign Up" %></div>
+  <div class="actions"><%= f.submit "Enviar", id: "submit" %></div>
 <% end %>
 
+<script>
+  document.querySelector("#submit").addEventListener("click", function(event) {
+    var password = document.querySelector("#password");
+    var retypePassword = document.querySelector("#password_confirmation");
+    if (password.value !== retypePassword.value) {
+      event.preventDefault();
+      password.classList.add("error");
+      retypePassword.classList.add("error");
+      alert("As senhas não são iguais. Tente novamente.");
+    }
+  });
+</script>

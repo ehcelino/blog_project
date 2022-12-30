@@ -4,8 +4,21 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments
+    # A variável abaixo guarda a página anterior, ou seja
+    # a página que fez o request pela atual, para que 
+    # seja criado um link voltar. O problema é que
+    # se for dado refresh na página atual, a referência
+    # passa a ser pra ela, perdendo a ref. anterior.
+    session[:previous_url] = request.referer
   end
 
+  # se chamar este método na página da view ele volta na hora pra pg anterior
+  # def goback
+  #   return redirect_back(fallback_location: root_path)
+  # end
+  # helper_method :goback
+  
   def new
     @post = Post.new
   end

@@ -14,10 +14,14 @@
   <h1>Modelo de blog</h1>
   <div class="grid-container">
     <div class="grid-item">
-
+      <nav>
+            <%= link_to 'Home', root_path, class: "mybutton" %>
+            <%= link_to_if current_user, 'Novo post', new_post_path, class: "mybutton" %>
+            <%= link_to 'Usuários', users_path, class: "mybutton" %>
+      </nav>
     </div>
     <div class="grid-item">
-    <div class="log-menu">
+      <div class="log-menu">
         <% if current_user %>
           Logado como <%= current_user.email %>
           <%= link_to "   Log out", session_path("current"), method: "delete" %>
@@ -28,21 +32,6 @@
       </div>
     </div>
   </div>
-  
-    <nav>
-      <dl>
-        
-        <dt>
-          <%= link_to 'Home', root_path %>
-        </dt>
-        <dt>
-          <%= link_to 'Novo post', new_post_path %>
-        </dt>
-        <dt>
-          <%= link_to 'Usuários', users_path %>
-        </dt>
-      </dl>
-    </nav>
-    <%= yield %>
+  <%= yield %>
   </body>
 </html>

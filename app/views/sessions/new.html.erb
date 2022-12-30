@@ -1,13 +1,20 @@
 <h1>Log in</h1>
 
+<% if flash[:danger] %>
+  <script>
+    window.confirm("<%= flash[:danger] %>");
+  </script>
+<% end %>
+
 <%= form_tag sessions_path do %>
   <div class="field">
     <%= label_tag :email %><br />
     <%= text_field_tag :email, params[:email] %>
   </div>
   <div class="field">
-    <%= label_tag :password %><br />
+    <%= label_tag "Senha" %><br />
     <%= password_field_tag :password %>
   </div>
-  <div class="actions"><%= submit_tag "log in" %></div>
+  <%= hidden_field_tag :from_url, params[:previous_url] %>
+  <div class="actions"><%= submit_tag "Log in" %></div>
 <% end %>

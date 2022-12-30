@@ -1,13 +1,39 @@
-  <%= @post.user.username %>
+  <div>
+    <h3><%= @post.title %></h3>
+    <% time = @post.created_at.time.in_time_zone("Brasilia") %>
+    <% n_time = time.strftime("%d/%m/%Y %H:%M") %>
+    <i>Por <%= @post.user.username %>, <%= @post.user.email %> - <%= n_time %></i>
+    <hr>
+
+    <%= @post.body %>
+  </div>
   <br />
-  <%= @post.title %>
   <br />
-  <%= @post.body %>
-  <br />
-  <br />
+  <%= link_to "Voltar", session[:previous_url] %>
+  <% if current_user %>
+    <%= link_to "Adicionar comentário", new_comment_path(@post.id) %>
+  <% else %>
+    <%= link_to "Faça login para comentar", new_session_path(previous_url: (root_url + request.path)) %>
+  <% end %>
   <% if current_user == @post.user %>
-    <%= form_for(@post, method: :delete) do |f| %>
-      <%= f.submit "Delete", class: "btn btn-danger" %>
-    <% end %>
-    <%= button_to "Editar", edit_post_path(@post) %>
+  <div class="button-container">
+    <div class="postbuttons">
+      <%= form_for(@post, method: :delete) do |f| %>
+        <%= f.submit "Apagar", class: "btn btn-danger" %>
+      <% end %>
+    </div>
+    <div class="postbuttons">
+      <%= button_to "Editar", edit_post_path(@post), method: :get %>
+    </div>
+  </div>
+  <% end %>
+  <h2>Comentários</h2>
+
+  <% @comments.each do |comment| %>
+    <% timem3 = comment.created_at.time.in_time_zone("Brasilia") %>
+    <% f_time = timem3.strftime("%d/%m/%Y %H:%M") %>
+    <b><%= comment.title %>, <%= f_time %></b>
+    <br />
+    <i><%= comment.user.username %>, <%= comment.user.email %> </i>
+    <p><%= comment.body %></p>
   <% end %>

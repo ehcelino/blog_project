@@ -6,14 +6,15 @@
     </dt>
     <dt>
       <%= ps.label 'Texto'%>
-      <%= ps.text_area :body %>
+      <%= ps.text_area :body, rows: 15, cols: 100 %>
     </dt>
     <dt>
       <%= ps.hidden_field :user_id, value: current_user.id %>
-      <%= ps.label current_user.email %>
+      <%= ps.label 'Usuário: ' + current_user.username %>
     </dt>
     <dt>
       <%= ps.submit 'Salvar' %>
     </dt>
   </dl>
 <% end %>
+      <%= button_to "Cancelar", root_path, method: :get %>
