@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
+  # ignora a checagem de timeout neste controller
   skip_before_action :check_timeout
+  
   def new
     
   end
