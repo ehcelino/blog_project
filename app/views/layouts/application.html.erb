@@ -11,7 +11,7 @@
   </head>
 
   <body>
-  <h1>Modelo de blog</h1>
+  <h1 class="home-title">Modelo de blog</h1>
   <div class="grid-container">
     <div class="grid-item">
       <nav>
@@ -29,7 +29,7 @@
           <%= link_to "   Log out", session_path("current"), method: "delete" %>
         <% else %>
           <%= link_to 'Inscreva-se', new_user_path %> ou 
-          <%= link_to 'Log in', new_session_path %>
+          <%= link_to 'Log in', new_session_path(previous_url: (root_url + request.path)) %>
         <% end %>
       </div>
     </div>

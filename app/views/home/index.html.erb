@@ -2,8 +2,8 @@
 <% if notice %>
   <div class="notice"><%= notice %></div>
 <% end %>
-<h2>Todos os posts</h2>
-
+<h2>Todos os posts (total de <%= Post.count %> posts)</h2>
+<h3></h3>
 <% @posts.each do |post| %>
   <% time = post.created_at.time.in_time_zone("Brasilia") %>
   <% n_time = time.strftime("%d/%m/%Y %H:%M") %>
@@ -18,9 +18,8 @@
     <%= truncate(post.body, length: 350) %>
     <%= link_to 'Ver post', post %>
     <br />
-    <br />
   </div>
-  <div style="font-size: larger"><%= post.comments.size %> Comentários</div>
+  <div style="font-size: large"><%= post.comments.size %> Comentários</div>
     <% post.comments.each do |comment| %>
       <div style="font-size:smaller">
       <% stime = comment.created_at.time.in_time_zone("Brasilia") %>
@@ -34,6 +33,7 @@
       <br />
       </div>
     <% end %>
+    <br />
 <% end %>
 
 <% (1..total_pages).each do |page| %>

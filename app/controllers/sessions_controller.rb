@@ -18,14 +18,21 @@ class SessionsController < ApplicationController
       if params[:from_url]
         redirect_to params[:from_url]
       else
-        redirect_to root_path
+        # redirect_to root_path, notice: 'Logado com sucesso.'
+        redirect_back(fallback_location: root_path)
       end
     else
-      flash[:danger] = 'Usuário/senha inválidos.'
+      flash[:alert] = 'Usuário/senha inválidos.'
+      
+      # flash[:danger] ativa a mensagem via javascript
+      # flash[:danger] = 'Usuário/senha inválidos.'
+      
       # era pra funcionar com render 'new', mas só dá
       # parcialmente certo com redirect_to new_session_url
       # render 'new'
-      redirect_to new_session_url
+      # redirect_to new_session_url
+      redirect_to new_session_path
+
     end
   end
   

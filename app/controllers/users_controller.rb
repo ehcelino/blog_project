@@ -13,7 +13,8 @@ class UsersController < ApplicationController
       flash[:notice] = "Logado com sucesso."
       redirect_to root_url
     else
-      render "new"
+      # render "new"
+      render :new, status: :unprocessable_entity, content_type: "text/html"
     end
   end
 

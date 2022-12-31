@@ -2,10 +2,10 @@
 
 <h1>Inscrição</h1>
 
-<%= form_for @user, html: { id: "signup-form" } do |f| %>
+
   <% if @user.errors.any? %>
     <div class="error_messages">
-      <h2>Form is invalid</h2>
+      <h2>Atenção:</h2>
       <ul>
         <% @user.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -13,7 +13,8 @@
       </ul>
     </div>
   <% end %>
-  
+
+  <%= form_for @user, html: { id: "signup-form" } do |f| %>
   <div class="field">
     <%= f.label 'Usuário' %><br />
     <%= f.text_field :username %>

@@ -6,15 +6,11 @@
     </dt>
     <dt>
       <%= c.label 'Texto'%>
-      <%= c.text_area :body %>
+      <%= c.text_area :body, rows: 15, cols: 50 %>
     </dt>
     <dt>
       <%= c.hidden_field :user_id, value: current_user.id %>
       <%= c.hidden_field :post_id, value: @post.id %>
-      <%= c.label current_user.email %>
-      <%= c.label current_user.username %>
-      <%= c.label current_user.id %>
-      <%= c.label @post.id %>
     </dt>
     <dt>
       <%= c.submit 'Salvar' %>
