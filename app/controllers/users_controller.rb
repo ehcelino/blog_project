@@ -7,7 +7,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      # Loga automaticamente o usuário
       session[:user_id] = @user.id
+      cookies[:auth_token] = @user.auth_token
       flash[:notice] = "Logado com sucesso."
       redirect_to root_url
     else
@@ -22,7 +24,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:auth_token, :username, :email, :password)
   end
   
 end

@@ -15,12 +15,16 @@
 
 <%= form_tag sessions_path do %>
   <div class="field">
-    <%= label_tag :email %><br />
-    <%= text_field_tag :email, params[:email] %>
+    <%= label_tag "Usuário" %><br />
+    <%= text_field_tag :username, params[:username] %>
   </div>
   <div class="field">
     <%= label_tag "Senha" %><br />
     <%= password_field_tag :password %>
+  </div>
+  <div class="field">
+    <%= label_tag "Lembrar-me" %><br />
+    <%= check_box_tag :remember_me, 1, params[:remember_me] %>
   </div>
   <%= hidden_field_tag :from_url, params[:previous_url] %>
   <div class="actions"><%= submit_tag "Log in" %></div>

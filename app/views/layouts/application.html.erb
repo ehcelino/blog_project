@@ -17,7 +17,7 @@
       <nav>
             <%= link_to 'Home', root_path, class: "mybutton" %>
             <%= link_to_if current_user, 'Novo post', new_post_path, class: "mybutton" %>
-            <% if !current_user.nil? && current_user.email == "vince@vince.com" %>
+            <% if !current_user.nil? && current_user.email == "vincent@123.com" %>
               <%= link_to 'Usuários', users_path, class: "mybutton" %>
             <% end %>
       </nav>
@@ -25,7 +25,7 @@
     <div class="grid-item">
       <div class="log-menu">
         <% if current_user %>
-          Logado como <%= current_user.email %>
+          Logado como <%= current_user.username %>
           <%= link_to "   Log out", session_path("current"), method: "delete" %>
         <% else %>
           <%= link_to 'Inscreva-se', new_user_path %> ou 
