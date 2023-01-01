@@ -1,0 +1,18 @@
+<h2>Resultados da pesquisa</h2>
+
+<% @results.each do |post| %>
+  <% time = post.created_at.time.in_time_zone("Brasilia") %>
+  <% n_time = time.strftime("%d/%m/%Y %H:%M") %>
+  <div class="post">
+    <%= link_to post.title, post, class: "post-title" %>
+    <br />
+    <i> Por <%= post.user.username %> - <%= n_time %> </i>
+    <br />
+    <i> Email <%= post.user.email %> </i>
+    <br />
+    <br />
+    <%= truncate(post.body, length: 350) %>
+    <%= link_to 'Ver post', post %>
+    <br />
+  </div>
+<% end %>

@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
 
   def check_timeout
-    timeout_period = 1.minutes
+    timeout_period = 10.minutes
     if current_user && session[:last_request_at] && session[:last_request_at] < timeout_period.ago
       # current_user = nil
       # reset_session

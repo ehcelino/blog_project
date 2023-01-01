@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :posts, only: [:edit, :show, :create, :new, :update, :destroy]
   resources :comments, only: [:create, :new]
+  get 'search_posts', to: 'home#search', as: 'search_posts'
+
 end

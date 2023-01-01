@@ -2,6 +2,14 @@
 <% if notice %>
   <div class="notice"><%= notice %></div>
 <% end %>
+
+<%= form_tag search_posts_path, method: :get do %>
+  <%= text_field_tag :q, params[:q], placeholder: 'Pesquisar...' %>
+  <%= submit_tag 'Pesquisar', name: nil %>
+<% end %>
+
+
+
 <h2>Todos os posts (total de <%= Post.count %> posts)</h2>
 <h3></h3>
 <% @posts.each do |post| %>
@@ -20,20 +28,20 @@
     <br />
   </div>
   <div style="font-size: large"><%= post.comments.size %> Comentários</div>
-    <% post.comments.each do |comment| %>
-      <div style="font-size:smaller">
-      <% stime = comment.created_at.time.in_time_zone("Brasilia") %>
-      <% sn_time = stime.strftime("%d/%m/%Y %H:%M") %>
-      <strong><%= comment.title %></strong>
+      <% post.comments.each do |comment| %>
+        <div style="font-size:smaller">
+        <% stime = comment.created_at.time.in_time_zone("Brasilia") %>
+        <% sn_time = stime.strftime("%d/%m/%Y %H:%M") %>
+        <strong><%= comment.title %></strong>
+        <br />
+        <i><%= comment.user.username %> - <%= sn_time %></i>
+        <br />
+        <%= comment.body %>
+        <br />
+        <br />
+        </div>
+      <% end %>
       <br />
-      <i><%= comment.user.username %> - <%= sn_time %></i>
-      <br />
-      <%= comment.body %>
-      <br />
-      <br />
-      </div>
-    <% end %>
-    <br />
 <% end %>
 
 <% (1..total_pages).each do |page| %>
